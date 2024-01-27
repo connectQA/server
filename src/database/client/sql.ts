@@ -4,7 +4,7 @@ dotenv.config();
 
 export const database = new Sequelize(process.env.DATABASE_CONNECTION_STRING!, {
   dialect: "postgres",
-  logging: false,
+  logging: true,
   pool: {
     max: 25,
     min: 0,
