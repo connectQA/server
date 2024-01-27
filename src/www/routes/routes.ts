@@ -1,10 +1,22 @@
 import { Application } from "express";
-import { validateController } from "../controllers/validate-controller";
-import { registerController } from "../controllers/register-controller";
-import { goController } from "../controllers/go-controller";
+import { agentController } from "../controllers/agent.controller";
+import { execController } from "../controllers/exec.controller";
+import { runsController } from "../controllers/runs.controller";
+import { userController } from "../controllers/user.controller";
 
 export function routesProvider(app: Application) {
-  app.post("/validate", validateController().validate);
-  app.post("/register", registerController().register);
-  app.post("/go", goController().go);
+  // User
+  app.post("/create", userController().create);
+  app.post("/update", userController().update);
+
+  // Agent
+  app.post("/validate", agentController().validate);
+  app.post("/register", agentController().register);
+
+  // Runs
+  app.get("/runs", runsController().runs);
+  app.get("/result", runsController().resultByRun);
+
+  // Exec
+  app.post("/go", execController().go);
 }
